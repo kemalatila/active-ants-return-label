@@ -1,0 +1,48 @@
+{% sw_extends '@Storefront/storefront/page/account/order-history/order-detail.html.twig' %}
+
+{% block page_account_order_item_detail_tracking_code %}
+    {% if order.deliveries|length > 0 %}
+        {% block page_account_order_item_detail_tracking_code_label %}
+            <dt class="col-6 col-md-5">{{ "account.orderItemTracking"|trans|sw_sanitize }}</dt>
+        {% endblock %}
+
+        {% block page_account_order_item_detail_tracking_code_label_value %}
+            {% apply spaceless %}
+                <dd class="col-6 col-md-7">
+                    {% for delivery in order.deliveries %}
+                        {% set trackingCodes = delivery.trackingCodes %}
+                        {% set trackingUrl = delivery.shippingMethod.trackingUrl %}
+
+                        {% for trackingCode in trackingCodes %}
+                            {% if trackingUrl %}
+                                {% set output %}
+                                    <a href="{{ trackingUrl|format(trackingCode) }}" target="_blank"
+                                       rel="noopener">{{ trackingCode }}</a>
+                                {% endset %}
+                            {% else %}
+                                {% set output %}
+                                    <span>{{ trackingCode }}</span>
+                                {% endset %}
+                            {% endif %}
+
+                            {% if not loop.first and loop.index > 0 %}<span>, </span>{% endif %}{{ output }}
+                        {% endfor %}
+
+                        {% if not loop.first and loop.index > 0 %}<span>, </span>{% endif %}
+                    {% endfor %}
+                </dd>
+            {% endapply %}
+        {% endblock %}
+    {% endif %}
+    {% if order.deliveries|first.stateMachineState.technicalName == 'shipped' %}
+        {% if order.stateMachineState.technicalName == 'completed' %}
+            <dt class="col-6 col-md-5">{{ "account.orderReturnLabel"|trans|sw_sanitize }}</dt>
+            <dd class="col-6 col-md-7">
+                <a href="{{ path('frontend.downloadReturnLabel', {externalOrderId: order.orderNumber}) }}" target="_blank"
+                   rel="noopener"
+                   class="font-weight-bold">{{ "account.downloadLabel"|trans|sw_sanitize }}
+                </a>
+            </dd>
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Active Ansts Return Plugin Settings</title>
+        <title lang="nl-NL">Instellingen voor Active Ansts Return-plug-in</title>
+        <input-field>
+            <name>apiURL</name>
+            <label>API URL</label>
+            <copyable>true</copyable>
+        </input-field>
+        <input-field>
+            <name>apiKey</name>
+            <label>API KEY</label>
+            <copyable>true</copyable>
+        </input-field>
+        <input-field type="password">
+            <name>apiSecret</name>
+            <label>API SECRET</label>
+            <copyable>true</copyable>
+        </input-field>
+        <input-field type="int">
+            <name>displayLengthDayCount</name>
+            <label lang="nl-NL">Weergavelengte retourlink (dag)</label>
+            <label>Return Link Display Length (Day)</label>
+            <helpText>How many day do you want the return link will be displayed?</helpText>
+            <defaultValue>60</defaultValue>
+        </input-field>
+    </card>
+</config>
