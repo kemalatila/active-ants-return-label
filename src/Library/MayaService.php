@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace ActiveAnstsReturnLabelPlugin\Library;
+namespace ActiveAntsReturnLabelPlugin\Library;
 
 use mysql_xdevapi\Exception;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
@@ -63,7 +63,7 @@ class MayaService
      */
     private function getToken()
     {
-        $token = $this->systemConfigService->get('ActiveAnstsReturnLabelPlugin.bearer_token');
+        $token = $this->systemConfigService->get('ActiveAntsReturnLabelPlugin.bearer_token');
         if (empty($token)) {
             $client = new \GuzzleHttp\Client([
                 'headers' => [
@@ -72,8 +72,8 @@ class MayaService
                 ]
             ]);
 
-            $apiKey = $this->systemConfigService->get('ActiveAnstsReturnLabelPlugin.config.apiKey');
-            $apiSecret = $this->systemConfigService->get('ActiveAnstsReturnLabelPlugin.config.apiSecret');
+            $apiKey = $this->systemConfigService->get('ActiveAntsReturnLabelPlugin.config.apiKey');
+            $apiSecret = $this->systemConfigService->get('ActiveAntsReturnLabelPlugin.config.apiSecret');
 
             if (empty($apiKey) || empty($apiSecret)) {
                 throw new \Exception('Please configure Active Ansts Return Label Plugin', 500);
@@ -88,7 +88,7 @@ class MayaService
             ]);
             $data = $this->extractResponseData($response);
             $token = $data->access_token;
-            $this->systemConfigService->set('ActiveAnstsReturnLabelPlugin.bearer_token', $token);
+            $this->systemConfigService->set('ActiveAntsReturnLabelPlugin.bearer_token', $token);
         }
 
         $this->token = $token;
@@ -104,7 +104,7 @@ class MayaService
             $response = $this->shipmentSearch($externalOrderNumber);
         } catch (\Exception $e) {
             if ($e->getCode() == 401) {
-                $this->systemConfigService->set('ActiveAnstsReturnLabelPlugin.bearer_token', '');
+                $this->systemConfigService->set('ActiveAntsReturnLabelPlugin.bearer_token', '');
                 //Refresh Token
                 $this->getToken();
                 $response = $this->shipmentSearch($externalOrderNumber);
@@ -144,7 +144,7 @@ class MayaService
      */
     private function getServiceUrl()
     {
-        $serviceUrl = $this->systemConfigService->get('ActiveAnstsReturnLabelPlugin.config.apiURL');
+        $serviceUrl = $this->systemConfigService->get('ActiveAntsReturnLabelPlugin.config.apiURL');
         if (empty($serviceUrl)) {
             throw new \Exception('Please configure Active Ansts Return Label Plugin', 500);
         }

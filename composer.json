@@ -4,7 +4,7 @@
   "type": "shopware-platform-plugin",
   "license": "MIT",
   "extra": {
-    "shopware-plugin-class": "ActiveAnstsReturnLabelPlugin\\ActiveAnstsReturnLabelPlugin",
+    "shopware-plugin-class": "ActiveAntsReturnLabelPlugin\\ActiveAntsReturnLabelPlugin",
     "author": "Kemal Atila",
     "label": {
       "nl-NL": "Active Ants Return Label",
@@ -22,12 +22,12 @@
   },
   "autoload": {
     "psr-4": {
-      "ActiveAnstsReturnLabelPlugin\\": "src/"
+      "ActiveAntsReturnLabelPlugin\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ActiveAnstsReturnLabelPlugin\\Tests\\": "tests/"
+      "ActiveAntsReturnLabelPlugin\\Tests\\": "tests/"
     }
   }
 }

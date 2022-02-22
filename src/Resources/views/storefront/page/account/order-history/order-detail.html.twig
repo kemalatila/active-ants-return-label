@@ -38,7 +38,7 @@
     {% set shippedAt = order.deliveries|first.createdAt %}
     {% set dayAfterShipped = order.deliveries|first.createdAt.diff(date()).days %}
 
-    {% if dayAfterArrival < config('ActiveAnstsReturnLabelPlugin.config.displayLengthDayCount') %}
+    {% if dayAfterArrival < config('ActiveAntsReturnLabelPlugin.config.displayLengthDayCount') %}
     {% if order.deliveries|first.stateMachineState.technicalName == 'shipped' %}
         {% if order.stateMachineState.technicalName == 'completed' %}
             <dt class="col-6 col-md-5">{{ "account.orderReturnLabel"|trans|sw_sanitize }}</dt>

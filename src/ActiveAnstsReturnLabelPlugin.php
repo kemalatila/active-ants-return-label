@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace ActiveAnstsReturnLabelPlugin;
+namespace ActiveAntsReturnLabelPlugin;
 
 use Shopware\Core\Framework\Plugin;
 
-class ActiveAnstsReturnLabelPlugin extends Plugin
+class ActiveAntsReturnLabelPlugin extends Plugin
 {
 }
